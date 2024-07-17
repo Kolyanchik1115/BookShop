@@ -36,6 +36,5 @@ public class Book {
     private boolean isDeleted = false;
 
     public Book() {
-
     }
 }
