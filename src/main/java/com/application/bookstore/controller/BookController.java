@@ -1,7 +1,7 @@
 package com.application.bookstore.controller;
 
-import com.application.bookstore.dto.BookDto;
-import com.application.bookstore.dto.CreateBookRequestDto;
+import com.application.bookstore.dto.book.BookDto;
+import com.application.bookstore.dto.book.CreateBookRequestDto;
 import com.application.bookstore.service.book.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
