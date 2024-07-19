@@ -1,12 +1,13 @@
 package com.application.bookstore.service.user;
 
-import com.application.bookstore.dto.user.UserRegistrationRequestDto;
-import com.application.bookstore.dto.user.UserResponseDto;
+import com.application.bookstore.dto.user.registration.UserRegistrationRequestDto;
+import com.application.bookstore.dto.user.registration.UserResponseDto;
 import com.application.bookstore.exception.RegistrationException;
 import com.application.bookstore.mapper.UserMapper;
 import com.application.bookstore.model.User;
 import com.application.bookstore.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto)
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
                     requestDto.getEmail()));
         }
         User user = userMapper.toUser(requestDto);
+        user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
         return userMapper.toDto(userRepository.save(user));
     }
 }

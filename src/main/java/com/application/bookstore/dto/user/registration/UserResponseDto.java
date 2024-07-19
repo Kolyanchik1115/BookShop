@@ -1,4 +1,4 @@
-package com.application.bookstore.dto.user;
+package com.application.bookstore.dto.user.registration;
 
 import lombok.Data;
 
