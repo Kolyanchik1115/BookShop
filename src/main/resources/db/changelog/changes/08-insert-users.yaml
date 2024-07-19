@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users
+      author: sprat
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: email, value: "sprat@gmail.com"}
+              - column: {name: password, value: "$2a$10$MUsEs68SIsANIXaynGq.KeRX0.snAdoZlsKCJi1ZAS.hZpKW6dKme"}
+              - column: {name: first_name, value: "Sprat"}
+              - column: {name: last_name, value: "Dev"}
+              - column: {name: delivery_address, value: "19 Bakers St., New York, United States"}
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: "admin@gmail.com" }
+              - column: { name: password, value: "$2a$10$MUsEs68SIsANIXaynGq.KeRX0.snAdoZlsKCJi1ZAS.hZpKW6dKme"}
+              - column: { name: first_name, value: "Admin" }
+              - column: { name: last_name, value: "Admin" }
+              - column: { name: delivery_address, value: "14 Main St., New York, United States" }

@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-books
+      author: sprat
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column: {name: "title", value: "Harry Potter and the Philosopher's Stone"}
+              - column: {name: "author", value: "Joanne Rowling"}
+              - column: {name: "isbn", value: "1234567890123"}
+              - column: {name: "price", value: "29.99"}
+              - column: {name: "description", value: "First"}
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: "title", value: "Harry Potter and the Chamber of Secrets" }
+              - column: { name: "author", value: "Joanne Rowling" }
+              - column: { name: "isbn", value: "1234567890124" }
+              - column: { name: "price", value: "39.99" }
+              - column: { name: "description", value: "Second" }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: "title", value: "Harry Potter and the Prisoner of Azkaban" }
+              - column: { name: "author", value: "Joanne Rowling" }
+              - column: { name: "isbn", value: "1234567890125" }
+              - column: { name: "price", value: "35.50" }
+              - column: { name: "description", value: "Third" }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: "title", value: "Harry Potter and the Goblet of Fire" }
+              - column: { name: "author", value: "Joanne Rowling" }
+              - column: { name: "isbn", value: "1234567890126" }
+              - column: { name: "price", value: "37.10" }
+              - column: { name: "description", value: "Fourth" }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: "title", value: "Harry Potter and the Order of the Phoenix" }
+              - column: { name: "author", value: "Joanne Rowling" }
+              - column: { name: "isbn", value: "1234567890127" }
+              - column: { name: "price", value: "33.50" }
+              - column: { name: "description", value: "Fifth" }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: "title", value: "Harry Potter and the Half-Blood Prince" }
+              - column: { name: "author", value: "Joanne Rowling" }
+              - column: { name: "isbn", value: "1234567890128" }
+              - column: { name: "price", value: "31.30" }
+              - column: { name: "description", value: "Sixth" }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: "title", value: "Harry Potter and the Deathly Hallows" }
+              - column: { name: "author", value: "Joanne Rowling" }
+              - column: { name: "isbn", value: "1234567890129" }
+              - column: { name: "price", value: "70.30" }
+              - column: { name: "description", value: "Seventh" }

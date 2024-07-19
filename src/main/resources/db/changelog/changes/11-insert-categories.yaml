@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-categories
+      author: sprat
+      changes:
+        - insert:
+            tableName: categories
+            columns:
+              - column: { name: "name", value: "Fantasy" }
+              - column: { name: "description",
+                          value: "Fantasy is a genre of speculative fiction 
+                          involving magical elements, typically set in a 
+                          fictional universe and usually inspired by mythology or folklore." }
+        - insert:
+            tableName: categories
+            columns:
+              - column: { name: "name", value: "Comedy" }
+              - column: { name: "description",
+                          value: "Comedy is a genre of fiction 
+                          that consists of discourses or works 
+                          intended to be humorous or amusing by 
+                          inducing laughter." }
