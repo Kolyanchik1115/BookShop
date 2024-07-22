@@ -14,5 +14,6 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     @Query("SELECT ci from CartItem ci JOIN FETCH ci.shoppingCart")
     Page<CartItem> findAll(Pageable pageable);
 
+    @Query("SELECT ci from CartItem ci JOIN FETCH ci.shoppingCart sc WHERE sc.id = :id ")
     List<CartItem> findAllById(Long id);
 }

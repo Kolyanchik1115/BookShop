@@ -40,7 +40,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String lastName;
     private String deliveryAddress;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -57,6 +56,11 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class CartItemServiceImpl implements CartItemService {
     private final BookRepository bookRepository;
 
     @Override
-    public CartItemResponseDto updatedById(Long id, int quantity) {
+    public CartItemResponseDto updateById(Long id, int quantity) {
         CartItem cartItemById = getById(id);
         cartItemById.setQuantity(quantity);
         return cartItemMapper.toDto(cartItemRepository.save(cartItemById));

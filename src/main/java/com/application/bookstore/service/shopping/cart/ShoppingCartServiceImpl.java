@@ -11,19 +11,17 @@ import com.application.bookstore.model.User;
 import com.application.bookstore.repository.shopping.cart.ShoppingCartRepository;
 import com.application.bookstore.service.cart.item.CartItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-
     private final CartItemService cartItemService;
     private final ShoppingCartRepository shoppingCartRepository;
     private final ShoppingCartMapper shoppingCartMapper;
 
     @Override
-    public ShoppingCartResponseDto findUserById(Long id) {
+    public ShoppingCartResponseDto findByUserId(Long id) {
         return shoppingCartMapper.toDto(shoppingCartRepository
                 .findByUserId(id)
                 .orElseThrow(
@@ -40,13 +38,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCartResponseDto addToShoppingCart(Authentication authentication,
+    public ShoppingCartResponseDto addToShoppingCart(Long userId,
                                                      ShoppingCartRequestDto requestDto) {
-        User user = (User) authentication.getPrincipal();
-        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(user.getId())
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(
                         () -> new EntityNotFoundException("Can't find"
-                                + " shopping cart by user's id: " + user.getId())
+                                + " shopping cart by user's id: " + userId)
                 );
         CartItem cartItem = cartItemService.addCartItem(shoppingCart, requestDto);
         shoppingCart.getCartItems().add(cartItem);
@@ -55,16 +52,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCartResponseDto updateByCartId(
-            Authentication authentication,
+            Long userId,
             Long id,
             PutCartItemRequestDto requestDto
     ) {
-        cartItemService.updatedById(id, requestDto.getQuantity());
-        User user = (User) authentication.getPrincipal();
-        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(user.getId())
+        cartItemService.updateById(id, requestDto.getQuantity());
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(userId)
                 .orElseThrow(
                         () -> new EntityNotFoundException("Can't find"
-                                + " shopping cart by user's id: " + user.getId())
+                                + " shopping cart by user's id: " + userId)
                 );
         return shoppingCartMapper.toDto(shoppingCart);
     }

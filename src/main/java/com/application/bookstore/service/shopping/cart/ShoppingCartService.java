@@ -4,19 +4,18 @@ import com.application.bookstore.dto.cart.item.PutCartItemRequestDto;
 import com.application.bookstore.dto.shopping.cart.ShoppingCartRequestDto;
 import com.application.bookstore.dto.shopping.cart.ShoppingCartResponseDto;
 import com.application.bookstore.model.User;
-import org.springframework.security.core.Authentication;
 
 public interface ShoppingCartService {
 
-    ShoppingCartResponseDto findUserById(Long id);
+    ShoppingCartResponseDto findByUserId(Long id);
 
     void createShoppingCart(User user);
 
-    ShoppingCartResponseDto addToShoppingCart(Authentication authentication,
+    ShoppingCartResponseDto addToShoppingCart(Long userId,
                                               ShoppingCartRequestDto requestDto);
 
     ShoppingCartResponseDto updateByCartId(
-            Authentication authentication,
+            Long userId,
             Long id,
             PutCartItemRequestDto requestDto
     );

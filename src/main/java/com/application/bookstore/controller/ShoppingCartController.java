@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/cart")
 @Tag(name = "Shopping cart management", description = "Endpoints for shopping cart")
 public class ShoppingCartController {
-
     private final ShoppingCartService shoppingCartService;
     private final CartItemService cartItemService;
 
@@ -35,16 +34,17 @@ public class ShoppingCartController {
     @Operation(summary = "Get shopping cart", description = "Get all shopping cart details")
     public ShoppingCartResponseDto getShoppingCart(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        return shoppingCartService.findUserById(user.getId());
+        return shoppingCartService.findByUserId(user.getId());
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     @Operation(summary = "Add book to shopping cart", description = "Add book to shopping cart")
-    public ShoppingCartResponseDto addItemToShoppingCart(
+    public ShoppingCartResponseDto addToShoppingCart(
             Authentication authentication,
             @RequestBody @Valid ShoppingCartRequestDto requestDto) {
-        return shoppingCartService.addToShoppingCart(authentication, requestDto);
+        User user = (User) authentication.getPrincipal();
+        return shoppingCartService.addToShoppingCart(user.getId(), requestDto);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -56,8 +56,11 @@ public class ShoppingCartController {
     public ShoppingCartResponseDto updateById(
             Authentication authentication,
             @PathVariable Long id,
-            @RequestBody @Valid PutCartItemRequestDto requestDto) {
-        return shoppingCartService.updateByCartId(authentication, id, requestDto);
+            @RequestBody @Valid PutCartItemRequestDto requestDto
+    ) {
+        User user = (User) authentication.getPrincipal();
+        return shoppingCartService
+                .updateByCartId(user.getId(), id, requestDto);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
@@ -69,5 +72,4 @@ public class ShoppingCartController {
     public void deleteItemFromShoppingCart(@PathVariable Long id) {
         cartItemService.deleteCartItem(id);
     }
-
 }
