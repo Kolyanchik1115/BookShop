@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Data
 public class CreateCategoryRequestDto {
-    @NotNull
+    @NotNull(message = "name should be not empty")
     @Length(min = 4, max = 20, message = "length should be between 4 and 20")
     private String name;
     private String description;

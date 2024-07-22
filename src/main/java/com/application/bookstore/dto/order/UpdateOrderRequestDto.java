@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class UpdateOrderRequestDto {
-    @NotNull
+    @NotNull(message = "status should be not empty")
     private Status status;
 }

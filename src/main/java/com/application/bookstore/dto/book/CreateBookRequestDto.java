@@ -10,16 +10,16 @@ import org.hibernate.validator.constraints.ISBN;
 
 @Data
 public class CreateBookRequestDto {
-    @NotBlank
+    @NotBlank(message = "title can't be empty")
     @Size(min = 2, max = 20, message = "length should be between 2 and 20")
     private String title;
-    @NotBlank
+    @NotBlank(message = "author can't be empty")
     private String author;
-    @NotNull
-    @ISBN
+    @NotNull(message = "isbn can't be empty")
+    @ISBN(message = "invalid isbn format")
     private String isbn;
-    @NotNull
-    @Positive
+    @NotNull(message = "price can't be empty")
+    @Positive(message = "price should be positive")
     private BigDecimal price;
     private String description;
     private String coverImage;

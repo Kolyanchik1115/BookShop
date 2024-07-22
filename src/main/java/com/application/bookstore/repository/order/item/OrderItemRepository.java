@@ -20,4 +20,5 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
             + "JOIN  FETCH oi.book "
             + "WHERE oi.id = :itemId AND oi.order.id = :id")
     Optional<OrderItem> findById(Long id, Long itemId);
+
 }

@@ -16,13 +16,20 @@ public class OrderItemServiceImpl implements OrderItemService {
     private final OrderItemMapper orderItemMapper;
 
     @Override
-    public List<OrderItemResponseDto> getAllById(Long id) {
-        return orderItemRepository.findAllById(id)
-                .stream().map(orderItemMapper::toDto).toList();
+    public List<OrderItemResponseDto> getAllById(Long orderId) {
+        List<OrderItem> orderItems = orderItemRepository.findAllById(orderId);
+        if (orderItems.isEmpty()) {
+            throw new EntityNotFoundException("Can't find order items for order id: " + orderId);
+        }
+        return orderItems.stream().map(orderItemMapper::toDto).toList();
     }
 
     @Override
     public OrderItemResponseDto getItemById(Long id, Long itemId) {
+        List<OrderItem> orderItems = orderItemRepository.findAllById(id);
+        if (orderItems.isEmpty()) {
+            throw new EntityNotFoundException("Can't find order items for order id: " + id);
+        }
         OrderItem orderItem = orderItemRepository.findById(id, itemId).orElseThrow(
                 () -> new EntityNotFoundException("Can't find item by id: " + id)
         );

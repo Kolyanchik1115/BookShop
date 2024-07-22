@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class PutCartItemRequestDto {
 
-    @Positive
+    @Positive(message = "quantity should be positive")
     private Integer quantity;
 }
