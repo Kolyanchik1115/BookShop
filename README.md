@@ -18,7 +18,6 @@ Follow these steps to set up and run the project locally:
 
    ```bash
    git clone https://github.com/Kolyanchik1115/BookShop.git
-   cd book-store
    ```
 
 2. **Configure Environment Variables**
