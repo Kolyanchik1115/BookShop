@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-@Transactional
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookControllerTest {
 
@@ -63,6 +62,7 @@ class BookControllerTest {
         Assertions.assertEquals(DEFAULT_AMOUNT_IN_BOOKS_TABLE, actual.size());
     }
 
+    @Transactional
     @WithMockUser(username = "admin", authorities = {"ROLE_ADMIN"})
     @Test
     @DisplayName("Delete book by id")

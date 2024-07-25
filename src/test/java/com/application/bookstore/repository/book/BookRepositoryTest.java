@@ -41,7 +41,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("Find all books and check amount")
+    @DisplayName("Get user's cart")
     @Sql(scripts = {
             "classpath:db/book/delete-books.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
