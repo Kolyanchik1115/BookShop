@@ -131,3 +131,18 @@ You can run the tests using Maven:
 ```bash
 mvn test
 ```
+## Running Tests
+
+## API Documentation
+
+### Swagger UI
+
+To conveniently view and test the API, you can use Swagger UI:
+
+[Swagger UI - localhost:8088/api/swagger-ui/index.html](http://localhost:8088/api/swagger-ui/index.html)
+
+### Postman Collection
+
+For testing the API, you can also use Postman:
+
+[Postman Collection](https://documenter.getpostman.com/view/24380148/2sA3kYhKew)
