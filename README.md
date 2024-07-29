@@ -139,7 +139,7 @@ mvn test
 
 To conveniently view and test the API, you can use Swagger UI:
 
-[Swagger UI - localhost:8088/api/swagger-ui/index.html](http://localhost:8088/api/swagger-ui/index.html)
+[Swagger UI](http://localhost:8088/api/swagger-ui/index.html)
 
 ### Postman Collection
 
