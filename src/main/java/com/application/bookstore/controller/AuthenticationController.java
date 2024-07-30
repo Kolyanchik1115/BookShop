@@ -1,5 +1,7 @@
 package com.application.bookstore.controller;
 
+import com.application.bookstore.dto.user.google.UserGoogleRequestDto;
+import com.application.bookstore.dto.user.google.UserGoogleResponseDto;
 import com.application.bookstore.dto.user.login.UserLoginRequestDto;
 import com.application.bookstore.dto.user.login.UserLoginResponseDto;
 import com.application.bookstore.dto.user.registration.UserRegistrationRequestDto;
@@ -35,5 +37,11 @@ public class AuthenticationController {
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto)
             throws RegistrationException {
         return userService.register(requestDto);
+    }
+
+    @PostMapping(value = "/google")
+    @Operation(summary = "Google authorization", description = "User google authorization")
+    public UserGoogleResponseDto google(@RequestBody @Valid UserGoogleRequestDto requestDto) {
+        return userService.google(requestDto);
     }
 }
