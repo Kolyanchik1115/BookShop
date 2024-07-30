@@ -1,4 +1,4 @@
-package com.application.bookstore.validation;
+package com.application.bookstore.util.validation;
 
 import com.application.bookstore.dto.user.registration.UserRegistrationRequestDto;
 import jakarta.validation.ConstraintValidator;

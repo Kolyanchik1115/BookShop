@@ -1,4 +1,4 @@
-package com.application.bookstore.validation;
+package com.application.bookstore.util.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

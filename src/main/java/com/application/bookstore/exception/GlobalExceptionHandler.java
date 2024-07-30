@@ -35,6 +35,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponse(HttpStatus.UNAUTHORIZED, ex);
     }
 
+    @ExceptionHandler(RequestTokenException.class)
+    public ResponseEntity<Object> handleGoogleTokenException(Exception ex) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, ex);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers,
