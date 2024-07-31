@@ -16,9 +16,25 @@ services:
       timeout: 30s
       retries: 3
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    ports:
+      - "${RABBITMQ_PORT}:${RABBITMQ_PORT}"
+      - "${RABBITMQ_MANAGEMENT_PORT}:${RABBITMQ_MANAGEMENT_PORT}"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    healthcheck:
+      test: [ "CMD-SHELL", "rabbitmq-diagnostics -q check_running" ]
+      timeout: 30s
+      retries: 3
+
   app:
     depends_on:
       db:
+        condition: service_healthy
+      rabbitmq:
         condition: service_healthy
     restart: on-failure
     image: books_store
@@ -34,6 +50,10 @@ services:
         "spring.datasource.password" : "${POSTGRES_PASSWORD}",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
         "spring.datasource.driver-class-name" : "org.postgresql.Driver",
-        "spring.jpa.hibernate.ddl-auto" : "validate"
+        "spring.jpa.hibernate.ddl-auto" : "validate",
+        "spring.rabbitmq.host" : "rabbitmq",
+        "spring.rabbitmq.port" : "${RABBITMQ_PORT}",
+        "spring.rabbitmq.username" : "${RABBITMQ_DEFAULT_USER}",
+        "spring.rabbitmq.password" : "${RABBITMQ_DEFAULT_PASS}"
       }'
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
