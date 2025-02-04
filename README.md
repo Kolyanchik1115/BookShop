@@ -11,6 +11,9 @@ Follow these steps to set up and run the project locally:
 
 1. Install [Docker](https://www.docker.com/products/docker-desktop)
 2. Install [Maven](https://maven.apache.org/install.html)
+3. Install [JDK]
+
+
 
 ### Setup
 
